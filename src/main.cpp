@@ -13,11 +13,13 @@ int count = 0; // Number of elements in the buffer
 bool addToBuffer(uint8_t data);
 bool removeFromBuffer(uint8_t& data);
 
-void setup() {
+void setup() 
+{
   Serial2.begin(115200);
 }
 
-void loop() {
+void loop() 
+{
   // Add some sample data to the buffer
   for (int i = 0; i < 40; i++) {
     if (!addToBuffer(i)) {
@@ -28,14 +30,16 @@ void loop() {
 
   // Print the data from the buffer
   uint8_t data;
-  while (removeFromBuffer(data)) {
+  while (removeFromBuffer(data)) 
+  {
     Serial2.println(data);
   }
 
   delay(1000);
 }
 
-bool addToBuffer(uint8_t data) {
+bool addToBuffer(uint8_t data) 
+{
   int next = (head + 1) % BUFFER_SIZE;
 
   // Check if the buffer is full
@@ -51,7 +55,8 @@ bool addToBuffer(uint8_t data) {
   }
 }
 
-bool removeFromBuffer(uint8_t& data) {
+bool removeFromBuffer(uint8_t& data) 
+{
   if (count > 0) {
     data = buffer[tail];
     tail = (tail + 1) % BUFFER_SIZE;
